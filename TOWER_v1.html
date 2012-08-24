@@ -15,24 +15,7 @@
 		padding-top: 60px;
 		padding-bottom: 80px;
 	}
-	.sidebar h2 small{
-	color: #666 !important;
-	}
-	#content ul{
-	list-style-type: none !important;
-	margin: 10px 0 10px 25px;
-	}
-	#content ul ul {
 	
-	}	
-	#content ul ul ul{
-		margin-top: 0;
-	}			
-	.navbar .nav .active a{
-	color: #444 !important;
-	background-color: #2C2C00;
-	background-color: #AAA;
-	}
 	.brand{
 	font-family: "oleo script";
 	}
@@ -56,7 +39,6 @@
 <link href="https://dev.laits.utexas.edu/tower/dev/www/css/colorbox.css" rel="stylesheet">
 <link href="https://dev.laits.utexas.edu/tower/dev/www/css/local.css" rel="stylesheet">
 
-<link href="TOWER-files/css/bootstrap.css" rel="stylesheet">
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -75,7 +57,7 @@
 <script src="./TOWER_files/jwplayer.js"></script>
 <script src="./TOWER_files/livestream.js"></script>
 
-<script src="./TOWER_files/script.js"></script>
+		<script src="./TOWER_files/script.js"></script>
 </head>
 <div class="navbar navbar-fixed-top">
 <div class="navbar-inner">
@@ -85,41 +67,32 @@
 		<li class="active"><a href="#">Home</a></li>
 		<li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		<span class="badge badge-important">4</span> <i class="icon-bullhorn"></i> Assignments <b class="caret"></b></a>
+		<span class="badge badge-important">4</span> <i class="icon-file"></i> Assignments <b class="caret"></b></a>
 		<ul class="dropdown-menu">
-		 <li><a href="#">quiz #12</a></li>
-		 <li><a href="#">quiz #13 </a></li>
-		 <li><a href="#">chatroom </a></li>
-		<hr>	
-		<li><a href="#">See All Assignments... </a></li>
+			 <li><a href="#">quiz #12</a></li>
+		  <li><a href="#">quiz #13 </a></li>
+		  <li><a href="#">survey #1 </a></li>
+		  <li><a href="#">chatroom </a></li>
 		</ul>
 		</li>
 		<li class="dropdown">
 		<a href="#"" class="dropdown-toggle" data-toggle="dropdown"> <span class="badge badge-important">1</span> <i class="icon-envelope"></i> Messages <b class="caret"></b></a>
 		<ul class="dropdown-menu">
-		<li><a href="#">Message from professor: <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue.</a></li>
-                <hr>  
-		<li><a href="#">See all Messages... </a></li>
+			<li><a href="#">Message from professor: <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue.</a></li>
 		</ul>
 		</li>
-		<li class="dropdown">
-		<a href="#"" class="dropdown-toggle" data-toggle="dropdown"> <span class="badge badge-important">1</span> <i class="icon-th-list"></i> Surveys <b class="caret"></b></a>
-		<ul class="dropdown-menu">
-                  <li><a href="#">survey #1 </a></li>
-                <hr>  
-		<li><a href="#">See all Surveys... </a></li>
-		</ul>	
-		</li>
-		<li><a href="#"><i class="icon-book"></i> Grades</a></li>
+		<li><a href="#"><i class="icon-"></i>Surveys</a></li>
 		<li><a href="#"><i class="icon-"></i>Pages</a></li>
+		<li><a href="#"><i class="icon-book"></i>Grades</a></li>
 	</ul>
 		<div class="navbar-text pull-right" id="login">
 		<ul class="nav">
 
+		<li><a href="#"><i class="icon-book"></i>Contacts</a></li>
+		<li><a href="#"><i class="icon-book"></i></a></li>
 		<li class="pull-right"><button class="btn btn-small" href="#">Stream Video <i class="icon-film"></i> </button></li>
-		<li><a href="#"><i class="icon"></i>Contacts</a></li>
 		<li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> <b class="caret"></b></a>
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
 		<ul class="dropdown-menu">
 		  <li><a href="#">help</a></li>
 		  <hr>
@@ -136,23 +109,19 @@
 <div class="container-fluid">
 
 <div class="row-fluid">
-<div class="span3 sidebar">
-<h2><small>Psych 301</small></h2>
+<div class="span3">
+<h2><small>Psychology 301</small></h2>
 	<ul class="span12 nav nav-list unstyled">
-	<li><a href="#">Reading List</a></li>
-	<li><a href="#">Lecture Outlines</a></li>
+	<li><a href="#">Syllabus</a></li>
+	<li><a href="grades.html">My Grades</a></li>
 	<li><a href="#">Class Pages</a></li>
 	<li><a href="#">Messages</a></li>
-	<li><a href="#">Grades</a></li>
-	<li><a href="#">Chatrooms</a></li>
-	<hr>
-	</ul>
-	<ul class="span12 nav nav-list unstyled">
-	<li class="nav-header">Newest Things</i>
+	
+	<li class="nav-header">Current Assignments</li>
 	<li><a href="#"><i class="icon-flag"></i>quiz #12 </a></li>
 	<li><a href="#"><i class="icon-flag"></i>quiz #13 </a></li>
-	<li><a href="#">chatroom </a></li>
-	<li><a href="#">survey #12 </a></li>
+	<li><a href="#"><i class="icon-flag"></i>survey #12 </a></li>
+	<li><a href="#"><i class="icon-flag"></i>chatroom </a></li>
 	
 	<li class="nav-header ">recent</li>
 	<li><a href="#"><i class="icon-pencil"></i>quiz #11 (retake/edit) <span class="recency pull-left">1 hour ago</span></a></li>
@@ -175,52 +144,62 @@
   <p>do we need alert mes</p>
   </div>-->
 <div class="span5">	
-	<div id="content" class="well">
-	<h1>Introduction to Psychology</h1>	   
-	<p class="lead">James Pennebaker & Sam Gosling</p>
-	<hr>
-	<h2>Lecture 1</h2>
-	<p class="lead">Introduction to the Course</p>
-	<h3>Introductions and Overview</h3>
-	<p> Psychology is a field that examines how and why we think, feel, and behave in the ways that we do. The goal of this course is for you to get a basic understanding of the major topics surrounding the mind and behavior. As you will learn, there are a number of overlapping methods and theories. For example, people who study brain activity use the same general methods as those who investigate group behavior. As we move from topic to topic, pay attention to the continuity of ideas and approaches. We particularly want you to see how psychological theories relate to other concepts as well as to your everyday life.</p>
-	<ul>
-	<li><h4>I. The amazing world of psychology</h4>
+	<div class="well">
+	<h1>Today's Class Page</h1>
+	<h3>Introduction to Psychology</h3>	   
+	<p class="lead">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+	<p>Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
 	
-	<ul><li><a href="#">It’s everywhere</a></li>
-	<li>Different levels of analysis</li>
-	<li>Different theoretical approaches</li></ul></li>
-	<li><h4>II. Introductions all around</h4>
-	
-	<ul><li>Instructors:  James W. Pennebaker and Samuel D. Gosling</li>
-	<li>The TA team:
-	<ul><li>2:00 class: Laith Al-Shawaf, Kat Snyder</li>
-	<li>3:30 class:  Michael Buhrmester, Carson Sandy</li>
-	<li>The Techno Czar:  Jason Ferrell</li></ul></li>
-	<li>The students
-	<ul><li>The coffee test</li></ul></li></ul></li>
-	<li><h4>III.  Rules, procedures, regulations, threats, gatekeepers, and the meaning of life</h4>
-	
-	<ul><li>The digital classroom</li>
-	<li>The Royal Gateway to Truth: www.psy.utexas.edu/jp301</li>
-	<li>The book: Online readings</li>
-	<li>TOWR: Daily benchmarks</li>
-	<li>Class demonstrations, surveys, and exercises</li>
-	<li>Writing assignments</li>
-	<li>Experimental requirement/Prescreening</li>
-	<li>Music at the beginning of class</li></ul></li>
-	</ul>
-
+	<h3>The History of Psychology</h3>
+	<p>Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p>
 	</div>
 </div>
 <div class="span4">	
-<div class="well">
-<h2>Take Note</h2>
+	<div class="well">
+	<a href="#">hide</a>
+	<h1>Grades</h1>
+	<!--<h3>by topic</h3>
+	<table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Mark</td>
+            <td>Otto</td>
+          </tr>
+ 
+        </tbody>
+      </table>-->
+      <div>
+      <h3>Progress Bars</h3>		  
+      topic 1
+      <div class="progress progress-info" style="margin-bottom: 9px;">
+        <div class="bar" style="width: 20%"></div>
+      </div>
+     topic 2
 
+      <div class="progress progress-success" style="margin-bottom: 9px;">
+        <div class="bar" style="width: 40%"></div>
+      </div>            
+      topic 3
 
+      <div class="progress progress-warning" style="margin-bottom: 9px;">
+        <div class="bar" style="width: 60%"></div>
+      </div>
+	  topic 4
 
-</div>
-</div>
-</div>
+      <div class="progress progress-danger" style="margin-bottom: 9px;">
+        <div class="bar" style="width: 80%"></div>
+        
+      </div>
+    </div>
+	</div>
 </div>
 
 
@@ -233,7 +212,7 @@
 
 <hr>
 <footer>
-e
+
 <a href="http://www.utexas.edu/">The University of Texas at Austin</a>
 |
 <a href="http://www.utexas.edu/cola/information-technology/">Liberal Arts ITS</a>
@@ -242,6 +221,33 @@ e
 
 </div> <!-- /container -->
 
+<div class="navbar navbar-fixed-bottom">
+ <div class="navbar-inner">
+    <div class="container-fluid">
+		<form class="chat-form">
+		<div class="pull-left">
+			<button class="close">&times;</button>
+		</div>
+		    <button class="btn btn-mini pull-left" href="#">expand chatbox</button>
+
+			<ul class="nav dropdown">
+			<li>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+			<small><span class="chatuser p">ghbn568</span></small><b class="caret"></b></a>
+			<ul class="dropdown-menu">
+				<li><h4><small>3:33pm</small></h4></li>
+				<li><h4><small><span class="chatuser p">ella</span></small> rthwertyetr</h4></li>
+				<li><h4><small><span class="chatuser p">joe</span></small> rtehyethet</h4></li>
+			</ul>
+			</li>
+			</ul>
+		<div class="input-append"><input class="input-medium span7" type="text" name="text" value="type your message"><input class="btn btn-primary btn-medium" type="submit" value="send">
+		</div>      
+		</form>
+	
+		</div>
+	</div>
+</div>
 
 
 

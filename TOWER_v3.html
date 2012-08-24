@@ -14,10 +14,24 @@
 	body {
 		padding-top: 60px;
 		padding-bottom: 80px;
-	}
+	acfbe8}
 	.sidebar h2 small{
 	color: #666 !important;
 	}
+	.sidebar .nav-header{
+	color: #666 !important;
+	}
+	.navbar .nav > li > a {
+	color: white;
+	color: #333;
+	text-shadow: 0 -1px 0 #bbb !important;
+	}	
+	.newest{
+	background-color: #fcfbe8;
+	}
+	.icon-flag{
+	margin-left: -16px;
+	}	
 	#content ul{
 	list-style-type: none !important;
 	margin: 10px 0 10px 25px;
@@ -50,10 +64,16 @@
 	.chat-form .close{
 	margin: 0;
 	}
-	
+
+	.navbar .brand{
+	font-size: 28px;
+	margin:-2px 0 -8px -22px;
+	color: #143745 !important;
+	}
+	a:link{
+	color: #2b76931 !important;
+	}	
 </style>
-<link href="https://dev.laits.utexas.edu/tower/dev/www/css/bootstrap-responsive.css" rel="stylesheet">
-<link href="https://dev.laits.utexas.edu/tower/dev/www/css/colorbox.css" rel="stylesheet">
 <link href="https://dev.laits.utexas.edu/tower/dev/www/css/local.css" rel="stylesheet">
 
 <link href="TOWER-files/css/bootstrap.css" rel="stylesheet">
@@ -85,9 +105,9 @@
 		<li class="active"><a href="#">Home</a></li>
 		<li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		<span class="badge badge-important">4</span> <i class="icon-bullhorn"></i> Assignments <b class="caret"></b></a>
+		<span class="badge badge-important">4</span> <i class="icon-globe"></i> Assignments <b class="caret"></b></a>
 		<ul class="dropdown-menu">
-		 <li><a href="#">quiz #12</a></li>
+		 <li><a href="#" class="newest">quiz #12</a></li>
 		 <li><a href="#">quiz #13 </a></li>
 		 <li><a href="#">chatroom </a></li>
 		<hr>	
@@ -111,7 +131,7 @@
 		</ul>	
 		</li>
 		<li><a href="#"><i class="icon-book"></i> Grades</a></li>
-		<li><a href="#"><i class="icon-"></i>Pages</a></li>
+		<li><a href="#"><i class="icon-"></i>Course Pages</a></li>
 	</ul>
 		<div class="navbar-text pull-right" id="login">
 		<ul class="nav">
@@ -121,9 +141,10 @@
 		<li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> <b class="caret"></b></a>
 		<ul class="dropdown-menu">
-		  <li><a href="#">help</a></li>
+		  <li><a href="#">Settings</a></li>
+		  <li><a href="#">Help</a></li>
 		  <hr>
-		  <li><a href="#">logout</a></li>
+		  <li><a href="#">Logout</a></li>
 		</ul>
 		</li>		
 	</ul>
@@ -148,17 +169,17 @@
 	<hr>
 	</ul>
 	<ul class="span12 nav nav-list unstyled">
-	<li class="nav-header">Newest Things</i>
-	<li><a href="#"><i class="icon-flag"></i>quiz #12 </a></li>
+	<li class="nav-header">What's New</li>
+	<li><a href="#" class="newest"><i class="icon-flag"></i>quiz #12 </a></li>
 	<li><a href="#"><i class="icon-flag"></i>quiz #13 </a></li>
 	<li><a href="#">chatroom </a></li>
-	<li><a href="#">survey #12 </a></li>
+	<li><a href="#">survey #12</a></li>
 	
 	<li class="nav-header ">recent</li>
 	<li><a href="#"><i class="icon-pencil"></i>quiz #11 (retake/edit) <span class="recency pull-left">1 hour ago</span></a></li>
 	<li><a href="#">survey #11 <span class="recency pull-left">1 day ago </span></a></li>
 	<li><a href="#">chatroom <span class="recency pull-left">2 days ago </span></a></li>
-	<li><a href="quiz.html">quiz #10 <span class="recency pull-left">2 days ago </span></a></li>
+	<li><a href="#">quiz #10 <span class="recency pull-left">2 days ago </span></a></li>
 	<li><a href="#">quiz #9<span class="recency pull-left">4 days ago </span></a></li>
 	<li><a href="#">chatroom <span class="recency pull-left">4 days ago </span> </a></li>
 	<hr>
@@ -233,7 +254,7 @@
 
 <hr>
 <footer>
-e
+
 <a href="http://www.utexas.edu/">The University of Texas at Austin</a>
 |
 <a href="http://www.utexas.edu/cola/information-technology/">Liberal Arts ITS</a>
