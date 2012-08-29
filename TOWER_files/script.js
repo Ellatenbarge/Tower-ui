@@ -1,152 +1,201 @@
 var Dase = {};
 
 $(document).ready(function() {
-	Dase.initDelete('login');
-	Dase.initDelete('set');
-	Dase.initDelete('topic');
-	Dase.initDelete('notes');
-	Dase.initDelete('lecture');
-	Dase.initToggle('target');
-	Dase.initToggle('email');
-	Dase.initToggle('setup');
+	Dase.initDelete();
+	Dase.initToggle();
+    Dase.initColorbox();
+    Dase.initColorboxInlineFrame();
+	Dase.initEditable();
 	//Dase.initSortable('set');
 	Dase.initSortableTable('set');
 	Dase.initUserPrivs();
 	Dase.initFormDelete();
+	Dase.initLabSelector();
 	Dase.initToggleCheck();
-	Dase.initColorbox('loclink');
-	Dase.initColorbox('qf_add');
-	Dase.initInactiveLinks();
-	Dase.initBenchmarkForm();
-	Dase.initChat();
-	Dase.initColorboxTest();
-	Dase.initResize();
-	Dase.initTogglePlayer();
-	Dase.initPopoutPlayer();
+    Dase.initBulkAdd();
+    Dase.initCsvUpload();
+    Dase.initEditMetadataValue();
+    Dase.initEditItem();
+    //Dase.initEditItemForm();
+    Dase.initInactiveLinks();
+    Dase.initPopoutPlayer();
 
-	$('.dropdown-toggle').dropdown();
+    $('.dropdown-toggle').dropdown();
 
 });
 
-Dase.initDialog = function() {
-	alert('ss');
-	$('#mediaplayer').dialog( { position:"top" } );
-};
-
 Dase.initPopoutPlayer = function() {
-	$('#popoutPlayer').popupWindow({ 
-		height:380, 
-		width:656, 
-		top:50, 
-		left:50
-	}); 
-};
-
-Dase.initTogglePlayer = function() {
-	$('#togglePlayer').click(function() {
-		if ($('#mediaplayer').is(':visible')) {
-			Dase.playerWidth = jwplayer().getWidth();
-			Dase.playerHeight = jwplayer().getHeight();
-			jwplayer().resize(0,0);
-			jwplayer().stop();
-			$('#mediaplayer').hide();
-		} else {
-			jwplayer().resize(Dase.playerWidth,Dase.playerHeight);
-			jwplayer().play();
-			$('#mediaplayer').show();
-		}
-		return false;
-	});
-
-};
-
-Dase.initResize = function() {
-	$('#plus').click(function() {
-		var w = jwplayer().getWidth();
-		var h= jwplayer().getHeight();
-		jwplayer().resize(w+16,h+9);
-		return false;
-	});
-	$('#minus').click(function() {
-		var w = jwplayer().getWidth();
-		var h= jwplayer().getHeight();
-		jwplayer().resize(w-16,h-9);
-		return false;
-	});
-
+    $('#popoutPlayer').popupWindow({
+height:340,
+width:430,
+top:50,
+left:50
+});
 };
 
 
-Dase.initColorboxTest = function() {
-	$("#cb").colorbox(
-		{iframe:true, innerWidth:800, innerHeight:500,onClosed: function() {location.reload()}}
-	);
-};
-
-Dase.initChat = function() {
-	var chat_count = 0;
-	if (document.getElementById('chatwindow')) {
-		var refreshId = setInterval(function(){
-			if (chat_count < 50) {
-				$.get('chat/log',function(html) {
-					chat_count++;
-					console.log('chat_count: '+chat_count);
-					$('#chatwindow').html(html);
-					$('#chatwindow').scrollTop($('#chatwindow')[0].scrollHeight); 
-				});
-			}
-		}, 2000);
-	}
-
-	$('form[action="chat"]').submit(function() {
-		var chat_o = {
-			'url': $(this).attr('action'),
-			'type':'POST',
-			'data':$(this).serialize(),
-			'success': function() {
-				//location.reload();
-				var cb = new Date().getTime();
-				$.get('chat/log?cb='+cb,function(html) {
-					chat_count = 0;
-					$('#chatwindow').html(html);
-					$('#chatwindow').scrollTop($('#chatwindow')[0].scrollHeight); 
-				});
-			},
-			'error': function() {
-				alert('sorry, an error occurred');
-			}
-		};
-		$.ajax(chat_o);
-			$(this).find('input[type=text]').val('');
+Dase.initEditable = function() {
+	$('.editable').each(function() {
+		var txt = $(this).find('span.editable-text');
+		var editlink = $(this).find('a.edit-toggle');
+		var editform = $(this).find('form');
+		editlink.click(function() {
+			txt.toggle();
+			editlink.toggle();
+			editform.toggle();
+			return false;
+		});	
+		editform.find('input[value="cancel"]').click(function() {
+			txt.toggle();
+			editlink.toggle();
+			editform.toggle();
 			return false;
 		});
-
-};
-
-Dase.initBenchmarkForm = function() {
-	$('#targetAddBenchmark').find('select[name="lecture_id"]').change(function() {
-		var lecture_id = $(this).find('option:selected').val();
-		var url = $('base').attr('href')+'admin/benchmark_hint/'+lecture_id+'.json';
-		$.getJSON(url,function(data) {
-			$('#targetAddBenchmark').find('input[name="name"]').attr('value',data.name);
-			if (data.topic_id) {
-				$('#targetAddBenchmark').find('select[name="topic_id"] option[value="'+data.topic_id+'"]').attr('selected','selected');
-			} else {
-				$('#targetAddBenchmark').find('select[name="topic_id"] option:first').attr('selected','selected');
-			}
-		});
 	});
-
 };
+
+Dase.initColorbox = function() {
+	$("a.colorbox").colorbox({
+		iframe:false, 
+        //onOpen: function() { alert('open'); },
+		onComplete: function() {
+			$('#closeColorbox').click(function() {$.colorbox.close();});
+			Dase.initDelete();
+			$('form.validate').submit(function() {
+				var missing = '';
+				$(this).find('.required').each( function(i) {
+					if ($(this).is(':visible') && '' == $(this).val()) {
+						missing += $('label[for="'+$(this).attr('id')+'"]').text()+' is required\n';
+					}
+				});
+				if (missing) {
+					alert(missing);
+					return false;
+				}
+			});
+		}
+	});
+};
+
+
+Dase.initColorboxInlineFrame = function() {
+	$("a.colorbox_if").colorbox({
+		iframe:true,
+       height: '600px',
+      width: '900px' 
+	});
+};
+
 
 Dase.initInactiveLinks = function() {
-	$("li.disabled a").click(function() { return false; });
+    $("li.disabled a").click(function() { return false; });
 };
 
-Dase.initColorbox = function(id) {
-	$('#'+id).colorbox(
-		{iframe:false, innerWidth:800, left: true, opacity: 0, innerHeight:500,onClosed: function() {location.reload()}}
-	);
+/*
+Dase.initEditItemForm = function() {
+    $('#edit_item_form').submit(function() {
+        $.ajax({  
+            type: "POST",  
+            url: $(this).attr('action'),  
+            data: $(this).serialize(),  
+            success: function(data) {  
+                location.reload();
+            }  
+        });
+        return false;
+    });
+};
+*/
+
+Dase.initEditItem = function() {
+    $('a#edit-item').click(function() {
+        var href = $(this).attr('href');
+        $.colorbox({
+            href:href,
+            opacity: 0.5,
+            width: 900,
+            onComplete: function() {
+                //Dase.initEditItemForm();
+                Dase.initFormDelete();
+                $('#closeColorbox').click(function() {$.colorbox.close();});
+            },
+        });
+        return false;
+    });
+    $('a#edit-item-swap').click(function() {
+        var href = $(this).attr('href');
+        $.colorbox({
+            href:href,
+            opacity: 0.5,
+            onComplete: function() {
+                Dase.initFormDelete();
+                $('#closeColorbox').click(function() {$.colorbox.close();});
+            },
+        });
+        return false;
+    });
+    $('a#edit-item-metadata').click(function() {
+        var href = $(this).attr('href');
+        $.colorbox({
+            href:href,
+            width: '700',
+            opacity: 0.5,
+            onComplete: function() {
+                Dase.initEditMetadataValue();
+                Dase.initBulkAdd();
+                Dase.initDelete('item_metadata');
+                $('#closeColorbox').click(function() {$.colorbox.close();});
+            },
+        });
+        return false;
+    });
+};
+
+Dase.initCsvUpload = function() {
+    $('a#csv').click(function() {
+        var href = $(this).attr('href');
+        $.colorbox({
+            href:href,
+            width: '480',
+            opacity: 0.5,
+            onComplete: function() {
+                $('#closeColorbox').click(function() {$.colorbox.close();});
+            }
+        });
+        return false;
+    });
+};
+
+Dase.initBulkAdd = function() {
+    $('#bulk_add').find('select[name="attribute_id"]').change(function() {
+        var att_id = $('select[name="attribute_id"] option:selected').val();
+        var url = 'content/attribute/'+att_id+'/input_form';
+        $.get(url,function(data) { $('#att_input_form').html(data); });
+    });
+    $('#bulk_add').submit(function() {
+        var items_input = $(this).find('input[name="items"]');
+        var matches = [];
+        $("#items input:checked").each(function() {
+            matches.push(this.value);
+        });
+        items_input.attr('value',matches.join('|'));
+    });
+};
+
+Dase.initEditMetadataValue = function() {
+    $('#item_metadata').find('a.edit').click(function() {
+        $(this).parents('tr').find('span.current_value').hide();
+        var target = $(this).parents('tr').find('span.value_input_form');
+        var url = $(this).attr('href');
+        $.get(url,function(data) { target.html(data); });
+        return false;
+    });
+};
+
+Dase.initLocColorbox = function() {
+    $("#loclink").colorbox(
+            {iframe:true, innerWidth:800, innerHeight:500,onClosed: function() {location.reload()}}
+            );
 };
 
 Dase.initToggleCheck = function() {
@@ -163,8 +212,22 @@ Dase.initToggleCheck = function() {
 	});
 };
 
-Dase.initToggle = function(id) {
-	$('#'+id).find('a.toggle').click(function() {
+Dase.initLabSelector = function() {
+	$('ul#lab_selector li').hover(function() {
+		$('#banners img').hide();
+		var id = $(this).attr('class');
+		$('#'+id).show();
+	});
+	$('#banners').hover(function() {
+		$('#banners img').hide();
+		$('#front').show();
+	});
+};
+
+
+
+Dase.initToggle = function() {
+	$('a.toggle').click(function() {
 		var id = $(this).attr('id');
 		var tar = id.replace('toggle','target');
 		$('#'+tar).toggle();
@@ -191,8 +254,8 @@ Dase.initFormDelete = function() {
 	});
 };
 
-Dase.initDelete = function(id) {
-	$('#'+id).find("a.delete").click(function() {
+Dase.initDelete = function() {
+	$("a.delete").click(function() {
 		if (confirm('are you sure?')) {
 			var del_o = {
 				'url': $(this).attr('href'),
